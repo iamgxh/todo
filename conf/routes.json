@@ -1,0 +1,9 @@
+{
+	"/":{
+		"con":"index"
+	},
+	"login":{
+		"con":"user",
+		"act":"login"
+	}
+}
