@@ -5,16 +5,24 @@ exports.listen=function(app){
 	app.get("/:key",function(req,res){
 		callUrlRequest(req,res);
 	})
+	app.post("/:key",function(req,res){
+		callUrlRequest(req,res,"post");
+	})
 	app.get("/:controller/:action",function(req,res){
 		callUrlRequest(req,res);
+	})
+	app.post("/:controller/:action",function(req,res){
+		callUrlRequest(req,res,"post");
 	})
 	app.use(function(req,res){
 		notFound(req,res);		
 	})
 }
 
-function callUrlRequest(req,res){
+function callUrlRequest(req,res,type){
 	var con,action;
+	var actFix=type=="post"?"":"Action";
+
 	if(req.path=="/")
 	{
 		req.params.key="/";
@@ -22,19 +30,24 @@ function callUrlRequest(req,res){
 
 	if(req.params.key)
 	{
+		//网站ico请求拦截，不进入controller
+		if(req.params.key == "favicon.ico"){return;};
+		//获取自定义路由
 		var routesMsg=initVar.routesConfig?initVar.routesConfig:getRoutesConf();
+		//路由存在
 		if(routesMsg[req.params.key])
 		{
 			con=routesMsg[req.params.key]["con"]+"Controller";
 			if(!routesMsg[req.params.key]["act"])
 			{
-				action="indexAction";
+				action="index"+actFix;
 			}
 			else
 			{
-				action=routesMsg[req.params.key]["act"]+"Action";
+				action=routesMsg[req.params.key]["act"]+actFix;
 			}
 		}
+		//不存在该路由
 		else
 		{
 			if(req.params.key=="/")
@@ -45,15 +58,16 @@ function callUrlRequest(req,res){
 			{
 				con=req.params.key+"Controller";
 			}
-			action="indexAction";
+			action="index"+actFix;
 		}
 	}
 	else
 	{
 		con=req.params.controller+"Controller",
-		action=req.params.action+"Action";
+		action=req.params.action+actFix;
 	}
 
+	//实例化控制器，调用action方法
 	var controller=require(CON+"/"+con);
 	if(controller)
 	{
@@ -74,6 +88,7 @@ function callUrlRequest(req,res){
 	}
 }
 
+//获取自定义路由表
 function getRoutesConf(){
 	var routesMsg = {};
     try{
@@ -87,6 +102,7 @@ function getRoutesConf(){
     return routesMsg;
 }
 
+//404页面
 function notFound(req,res){
 	res.status(404).send("404");
 }

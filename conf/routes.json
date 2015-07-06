@@ -1,9 +1,10 @@
 {
-	"/":{
-		"con":"index"
-	},
 	"login":{
-		"con":"user",
+		"con":"member",
 		"act":"login"
+	},
+	"register":{
+		"con":"member",
+		"act":"register"
 	}
 }

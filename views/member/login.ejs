@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todo" ng-controller="member">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" /> 
+	<title>Login</title>
+	<link rel="stylesheet" href="/css/base.css">
+</head>
+<body>
+	<form action="login" method="post" id="form-login">
+		<label for="">邮箱:</label><input type="text" placeholder="邮箱" name="email"><br>
+		<br>
+		<label for="">密码:</label><input type="password" placeholder="密码" name="password"><br>
+		<br>
+		<input type="button" value="登录" ng-click="login()">
+
+		<div class='ng-hide' ng-show="status">
+			{{errormsg}}
+		</div>
+	</form>
+
+	<script src="/scripts/libs/angular.min.js"></script>
+	<script src="/scripts/libs/jquery-1.8.3.min.js"></script>
+	<script>
+		var app=angular.module('todo',[]);
+		app.controller("member",function($scope){
+			$scope.login=function(){
+				$("#form-login").submit();
+			}
+			$scope.status=<%= status %>;
+			$scope.errormsg="用户名或者密码错误!";
+		});
+	</script>
+</body>
+</html>

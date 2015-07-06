@@ -5,6 +5,7 @@ global.APP=global.BASE_DIR+"/application";
 global.CON=global.APP+"/controllers";
 global.CORE=global.APP+"/core";
 global.MODEL=global.APP + "/model/";
+global.BLL=global.APP+"/bll";
 global.CONF=global.BASE_DIR + "/conf/";
 global.LOG=global.BASE_DIR + "/log/";
 global.PUBLIC=global.BASE_DIR + "/public/";
@@ -16,7 +17,8 @@ global.Module={
 	express:require("express"),
 	fs:require("fs"),
 	path:require("path"),
-	mongoose:require("mongoose")
+	mongoose:require("mongoose"),
+	bodyParser:require("body-parser")
 };
 
 /* 初始化变量 */
