@@ -6,13 +6,29 @@ function memberController(){
 	var parent=Object.getPrototypeOf(this);
 
 	this.registerAction=function(){
-		parent.render("register");
+		parent.render("member/register");
 	};
 
 	this.register=function(){
-		var m=new model();
-		var result=bll.register(m);
-		parent.json(result);
+		var body=parent.req.body;
+		//将参数赋值到model
+		var m=parent.params2model(parent.req.body,new model());
+		//默认model参数
+		m.registerTime=Date.parse(new Date());
+		m.status=1;
+		m.errorTimes=0;
+
+		bll.register(m,function(result){
+			if(result==1)
+			{
+				parent.redirect("/member/login");
+			}
+			else
+			{
+				parent.send("result:"+result);
+			}
+		});
+		
 	};
 
 	this.loginAction=function(){
@@ -27,7 +43,6 @@ function memberController(){
 		var result=bll.login(email,pwd,function(result){
 			if(result==1)
 			{
-				alert("登陆成功!");
 				parent.redirect("/");
 			}
 			else

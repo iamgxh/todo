@@ -28,5 +28,18 @@ function BaseController(){
 	this.redirect=function(path){
 		_self.res.redirect(path);
 	}
+
+	//将model
+	this.params2model=function(params,model)
+	{
+		for(x in model)
+		{
+			if(params[x])
+			{
+				model[x]=params[x];
+			}
+		}
+		return model;
+	}
 }
 global.BaseController = BaseController;

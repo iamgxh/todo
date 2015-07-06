@@ -1,18 +1,23 @@
 var model=require(MODEL+"/memberModel");
 
 module.exports={
-	register:function(member){
-		if(!this.isExistEmail)
-		{
-			model.save(member,function(err){
+	register:function(member,cb){
+		//var result=0;
+		//if(!this.isExistEmail(member.email))
+		//{
+			member.save(function(err){
 				if(err)
 				{
-					return -2;
+					result=-2;
 				}
-				return 1;
+				result=1;
+				if(cb)
+				{
+					cb(result);
+				}
 			})
-		}
-		return 0;
+		//}
+		
 	},
 	login:function(email,password,cb){
 		model.findOne({email:email},function(err,member){
@@ -21,9 +26,9 @@ module.exports={
 			{
 				result=-2;
 			}
-			if(result)
+			if(member)
 			{
-				if(result.password==password)
+				if(member.password==password)
 				{
 					result=1;
 				}
