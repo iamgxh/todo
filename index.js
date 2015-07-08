@@ -34,8 +34,7 @@ require(CORE+"/db").init();
 require(CONF+"/appConf")(app);
 
 /* 监听请求，路由系统 */
-reqListener=require(CORE+"/requestListener");
-reqListener.listen(app);
+require(CORE+"/requestListener").listen(app);
 
 /* 启动服务 */
 app.listen(SET.appPort,function(){

@@ -1,4 +1,4 @@
 f:
-cd f:\todolist
+cd f:\project\todo
 npm install
 pause

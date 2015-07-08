@@ -1,4 +1,4 @@
 F:
-cd F:\TodoList
+cd F:\project\todo
 node index.js
 pause
