@@ -68,24 +68,31 @@ function callUrlRequest(req,res,type){
 	}
 
 	//实例化控制器，调用action方法
-	var controller=require(CON+"/"+con);
-	if(controller)
-	{
-		var conObj=new controller();
-		conObj.init(req,res);
-		if(conObj[action])
+	Module.fs.exists(CON+"/"+con+".js",function(exists){
+		if(!exists)
 		{
-			conObj[action].call();
+			notFound(req,res);
+			return;
+		}
+		var controller=require(CON+"/"+con);
+		if(controller)
+		{
+			var conObj=new controller();
+			conObj.init(req,res);
+			if(conObj[action])
+			{
+				conObj[action].call();
+			}
+			else
+			{
+				notFound(req,res);
+			}
 		}
 		else
 		{
 			notFound(req,res);
 		}
-	}
-	else
-	{
-		notFound(req,res);
-	}
+	})	
 }
 
 //获取自定义路由表

@@ -1,6 +1,6 @@
 var favicon = require('serve-favicon');
 
-module.exports=function(app){
+exports.init=function(app){
 	app.set("views",VIEW);
 	app.set("view engine","ejs");
 	//设置静态资源文件路径

@@ -12,26 +12,33 @@ global.PUBLIC=global.BASE_DIR + "/public/";
 global.VIEW=global.BASE_DIR + "/views/";
 global.SET=require(global.CONF+"/default");
 
+
 /* node 模块引入 */
 global.Module={
 	express:require("express"),
 	fs:require("fs"),
 	path:require("path"),
 	mongoose:require("mongoose"),
-	bodyParser:require("body-parser")
+	bodyParser:require("body-parser"),
+	log4js:require("log4js")
 };
 
 /* 初始化变量 */
 global.initVar={
-	routesConfig:"" //路由表
+	routesConfig:"", //路由表
+	logger:""
 };
-var app=Module.express();
+
+app=Module.express();
+
+/* 系统日志 */
+require(CONF+"log4js").init(app,Module.log4js);
 
 /* 连接数据库 */
-require(CORE+"/db").init();
+require(CORE+"/db").connect();
 
 /* 服务配置 */
-require(CONF+"/appConf")(app);
+require(CONF+"/appConf").init(app);
 
 /* 监听请求，路由系统 */
 require(CORE+"/requestListener").listen(app);

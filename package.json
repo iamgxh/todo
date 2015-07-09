@@ -8,6 +8,7 @@
 		"mongoose":"4.0.6",
 		"serve-favicon": "2.1.5",
     	"ejs": "1.0.0",
-    	"body-parser":"1.13.2"
+    	"body-parser":"1.13.2",
+    	"log4js":"0.6.26"
 	}
 }

@@ -1,0 +1,8 @@
+[2015-07-09 11:14:42.340] [INFO] normal - ::1 - - "GET / HTTP/1.1" 200 141 "" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:14:44.232] [INFO] normal - ::1 - - "GET /123 HTTP/1.1" 404 3 "" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:14:57.911] [INFO] normal - ::1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:23:29.190] [INFO] normal - ::1 - - "GET / HTTP/1.1" 200 141 "" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:23:31.262] [INFO] normal - ::1 - - "GET /login HTTP/1.1" 304 - "" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:23:31.268] [INFO] normal - ::1 - - "GET /css/base.css HTTP/1.1" 304 - "http://localhost:8888/login" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:23:31.269] [INFO] normal - ::1 - - "GET /scripts/libs/angular.min.js HTTP/1.1" 304 - "http://localhost:8888/login" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+[2015-07-09 11:23:31.273] [INFO] normal - ::1 - - "GET /scripts/libs/jquery-1.8.3.min.js HTTP/1.1" 304 - "http://localhost:8888/login" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
